@@ -17,7 +17,7 @@ namespace UserManagement.Repository
 
         public async Task<IEnumerable<UserModel>> GetAllUsers(int CompanyId)
         {
-            var query = "SELECT * FROM APP_USERS WHERE [CompanyId] = @CompanyId";
+            var query = "SELECT Id,Username,'***' AS Password,RoleId,CompanyId,DateUpdated FROM APP_USERS WHERE [CompanyId] = @CompanyId";
             using (var connection = _context.CreateConnection())
             {
                 var users = await connection.QueryAsync<UserModel>(query, new { CompanyId = CompanyId});
@@ -27,7 +27,7 @@ namespace UserManagement.Repository
 
         public async Task<IEnumerable<UserModel>> GetAllNonAdminUsers(int CompanyId)
         {
-            var query = "SELECT * FROM APP_USERS WHERE [CompanyId] = @CompanyId AND [RoleId] = 2";
+            var query = "SELECT Id,Username,'***' AS Password,RoleId,CompanyId,DateUpdated FROM APP_USERS WHERE [CompanyId] = @CompanyId AND [RoleId] = 2";
             using (var connection = _context.CreateConnection())
             {
                 var users = await connection.QueryAsync<UserModel>(query, new { CompanyId = CompanyId });
@@ -37,7 +37,7 @@ namespace UserManagement.Repository
 
         public async Task<bool> IsUserExists(string Username)
         {
-            var query = "SELECT * FROM APP_USERS WHERE [Username] = @Username";
+            var query = "SELECT Id FROM APP_USERS WHERE [Username] = @Username";
             using (var connection = _context.CreateConnection())
             {
                 var result = await connection.QuerySingleAsync<UserModel>(query, new { Username = Username });
@@ -83,7 +83,7 @@ namespace UserManagement.Repository
             }
         }
 
-        public async Task<int> UpdateUser(UserModel userModel)
+        public async Task<int> UpdateUser(UpdateUserModel userModel)
         {
             var query = "UPDATE APP_USERS SET RoleId = @RoleId, CompanyId = @CompanyId " +
                 "WHERE Id = @Id";
@@ -133,7 +133,7 @@ namespace UserManagement.Repository
                         userModel.Id = result.Id;
                         userModel.RoleId = result.RoleId;
                         userModel.CompanyID = result.CompanyID;
-                        userModel.Password = "******";
+                        userModel.Password = "***";
                         userModel.DateUpdated = result.DateUpdated;
                     }
 

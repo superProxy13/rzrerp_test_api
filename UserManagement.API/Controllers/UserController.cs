@@ -75,7 +75,7 @@ namespace UserManagement.API.Controllers
 
         [HttpPut]
         [Authorize(Policy = "Admins")]
-        public async Task<IActionResult> UpdateUser([FromBody] UserModel userModel)
+        public async Task<IActionResult> UpdateUser([FromBody] UpdateUserModel userModel)
         {
             try
             {

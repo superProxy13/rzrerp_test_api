@@ -14,7 +14,7 @@ namespace UserManagement.Repository
         Task<IEnumerable<UserModel>> GetAllNonAdminUsers(int CompanyId);
         Task<bool> IsUserExists(string Username);
         Task<UserModel> CreateNewUser(NewUserModel userModel);
-        Task<int> UpdateUser(UserModel User);
+        Task<int> UpdateUser(UpdateUserModel User);
         Task<int> DeleteUser(long UserId);
         Task<UserModel> ValidateUserLogin(LoginModel login);
     }
