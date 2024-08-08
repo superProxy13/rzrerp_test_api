@@ -29,4 +29,6 @@ Notes:
   e.g. (my machine is 64 bit)
   C:\Program files\dotnet\
   C:\Progream Files\(x86)\dotnet\
-- 
+- Adjust database connection string accordingly
+
+version 1 | [2024-08-08] | Nelson Chagas
